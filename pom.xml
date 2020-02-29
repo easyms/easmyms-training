@@ -21,7 +21,23 @@
     <prerequisites>
         <maven>${maven.version}</maven>
     </prerequisites>
+    <properties>
+        <maven.version>3.5.0</maven.version>
+    </properties>
+
     <modules>
 
+        <module>easyms-training-sample-app</module>
     </modules>
+
+
+        <dependencies>
+            <!-- common dependencies -->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+            </dependency>
+
+        </dependencies>
+
 </project>
