@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
+import java.util.logging.Logger;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
@@ -28,13 +30,23 @@ public class ClientResource {
 
    @GetMapping(produces = APPLICATION_JSON_VALUE, path = "/v1/clients/{id}")
    public ResponseEntity<ClientDto> findById(@PathVariable Long id) {
-        Optional<ClientDto> clientDto = clientService.getById(id);
+
+       String tid = UUID.randomUUID().toString();
+
+       log.info("[{}][ClientResource][findById] find client by id ", tid);
+
+        Optional<ClientDto> clientDto = clientService.getById(id, tid);
         return clientDto.map(clDto -> ResponseEntity.ok().body(clDto)).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @GetMapping(produces = APPLICATION_JSON_VALUE, path = "/v1/clients")
-    ResponseEntity<List<ClientDto>> getAllClients(){
-        List<ClientDto> clientDtos = clientService.getAll();
+    ResponseEntity<List<ClientDto>> getAllClients() {
+
+        String tid = UUID.randomUUID().toString();
+
+        log.info("[{}][ClientResource][getAllClients] getAll client ", tid);
+
+        List<ClientDto> clientDtos = clientService.getAll(tid);
         return ResponseEntity.ok().body(clientDtos);
     }
 
