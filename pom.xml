@@ -22,6 +22,6 @@
         <maven>${maven.version}</maven>
     </prerequisites>
     <modules>
-
+        <module>easyms-training-sample-app</module>
     </modules>
 </project>
