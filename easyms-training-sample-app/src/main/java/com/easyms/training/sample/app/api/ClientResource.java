@@ -32,7 +32,7 @@ public class ClientResource {
         return clientDto.map(clDto -> ResponseEntity.ok().body(clDto)).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @GetMapping(produces = APPLICATION_JSON_VALUE, path = "/v1/clients/findAll")
+    @GetMapping(produces = APPLICATION_JSON_VALUE, path = "/v1/clients")
     ResponseEntity<List<ClientDto>> getAllClients(){
         List<ClientDto> clientDtos = clientService.getAll();
         return ResponseEntity.ok().body(clientDtos);
