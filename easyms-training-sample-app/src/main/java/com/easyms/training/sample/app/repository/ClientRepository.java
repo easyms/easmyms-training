@@ -3,24 +3,31 @@ package com.easyms.training.sample.app.repository;
 import com.easyms.training.sample.app.model.entity.Client;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
+import javax.annotation.PostConstruct;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Repository
 public class ClientRepository {
-    public List<Client> findAll() {
 
-        List<Client> clients = new ArrayList<>();
-        clients.add(Client.builder() .id(1L) .firstname("Ahmed") .lastname("KMIHA")  .email("kmiha.ahmed@gmail.com") .build());
-        clients.add(Client.builder() .id(2L) .firstname("Housain") .lastname("BOUHDADI")  .email("housain.bouhdaidi@gmail.com") .build());
-        clients.add(Client.builder() .id(3L) .firstname("Anis") .lastname("BESSA")  .email("bessa.anis@gmail.com") .build());
-        return clients;
+    Map<Long, Client> clients = null;
+
+    @PostConstruct
+    public void init() {
+        clients = new HashMap<>();
+        clients.put(1L, Client.builder() .id(1L) .firstname("Ahmed") .lastname("KMIHA")  .email("kmiha.ahmed@gmail.com") .build());
+        clients.put(2L, Client.builder() .id(2L) .firstname("Housain") .lastname("BOUHDADI")  .email("housain.bouhdaidi@gmail.com") .build());
+        clients.put(3L, Client.builder() .id(3L) .firstname("Anis") .lastname("BESSA")  .email("bessa.anis@gmail.com") .build());
+    }
+
+    public List<Client> findAll() {
+        return clients.values().stream().collect(Collectors.toList());
     }
 
     public Optional<Client> findById(Long id) {
-        Client client = Client.builder() .id(id) .firstname("Ahmed") .lastname("KMIHA")  .email("kmiha.ahmed@gmail.com") .build();
-        return Optional.of(client);
+        return Optional.of(clients.get(id));
     }
-
 }
