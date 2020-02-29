@@ -34,7 +34,7 @@ public class ClientResources {
         return ResponseEntity.ok().body(clientService.getAllClients());
     }
 
-    @GetMapping(produces = APPLICATION_JSON_VALUE,path = "/api/clients/{key}")
+    @GetMapping(produces = APPLICATION_JSON_VALUE,path = "/{key}")
     ResponseEntity<ClientDto> getClientByKey(@PathVariable long key){
         return ResponseEntity.ok().body(clientService.getClientByKey(key));
     }
