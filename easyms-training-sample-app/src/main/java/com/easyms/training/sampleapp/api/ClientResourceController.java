@@ -2,6 +2,7 @@ package com.easyms.training.sampleapp.api;
 
 import com.easyms.training.sampleapp.model.dto.ClientDto;
 import com.easyms.training.sampleapp.service.ClientService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,21 +18,15 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
 @RequestMapping(path = "/api")
-public class EasyMsController {
+@AllArgsConstructor
+public class ClientResourceController {
 
-    @Autowired
-    private ClientService clientService;
-
-    @GetMapping(path = "/get-hello")
-    public ResponseEntity<String> getHelloWorld() {
-        return ResponseEntity.ok().body("Bonjour Monde ");
-    }
-
+    private final ClientService clientService;
 
     @PostMapping(produces = APPLICATION_JSON_VALUE, path = "/v1/clients")
     ResponseEntity<ClientDto> createClient(@RequestBody @Valid ClientDto clientDto) {
         clientService.createClient(clientDto);
-        final URI location = ServletUriComponentsBuilder.fromCurrentServletMapping().path("/api/v1/clients").build().expand(clientDto.getId()).toUri();
+        final URI location = ServletUriComponentsBuilder.fromCurrentServletMapping().path("/api/v1/clients/{id}").build().expand(clientDto.getId()).toUri();
         return ResponseEntity.created(location).body(clientDto);
     }
 

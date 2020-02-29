@@ -9,7 +9,6 @@ import java.util.*;
 public class ClientRepository {
 
     private static Map<Long, ClientDto> clientDtoMap = new HashMap<>();
-    private static int maxLine = 0;
 
     public void createClient(ClientDto clientDto) {
         clientDtoMap.put(clientDto.getId(), clientDto);

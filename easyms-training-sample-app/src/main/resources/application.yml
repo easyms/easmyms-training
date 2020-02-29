@@ -1,2 +1,13 @@
 server:
   port: 8093
+  
+swagger:
+  paths: /api.*
+  apiInfoTitle: @project.artifactId@
+  apiInfoDescription: @project.name@ Documentation
+  apiInfoContactEmail: @swagger.project.contact@
+  apiInfoContactName: toto@gmail.com
+  apiInfoContactURL: toto.fr
+  apiInfoVersion: @pom.version@
+  apiInfoLicense: license
+  apiInfoLicenseUrl: http://easyms.fr/LICENSE-0.0.1.html
