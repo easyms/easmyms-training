@@ -17,7 +17,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
 @RequestMapping(path = "/api")
-public class EasyMsController {
+public class ClientResource {
 
     @Autowired
     private ClientService clientService;
