@@ -10,7 +10,6 @@
         <relativePath/>
     </parent>
 
-
     <groupId>com.easyms</groupId>
     <artifactId>easyms-training-sdk</artifactId>
     <version>1.0.0-SNAPSHOT</version>
@@ -23,21 +22,20 @@
     </prerequisites>
     <properties>
         <maven.version>3.5.0</maven.version>
+        <easyms.sdk.version>1.0.0-SNAPSHOT</easyms.sdk.version>
+
     </properties>
 
     <modules>
-
         <module>easyms-training-sample-app</module>
+        <module>easyms-training-rest-starter</module>
     </modules>
 
-
-        <dependencies>
-            <!-- common dependencies -->
-            <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-            </dependency>
-
-        </dependencies>
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>

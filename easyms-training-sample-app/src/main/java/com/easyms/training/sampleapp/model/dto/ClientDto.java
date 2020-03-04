@@ -5,13 +5,16 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@AllArgsConstructor
-@NoArgsConstructor
+
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ClientDto {
 
     private Long id;
     private String firstname;
+    private String lastname;
+    private String email;
 
 }
