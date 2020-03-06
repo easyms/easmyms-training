@@ -3,11 +3,23 @@ server:
   
 swagger:
   paths: /api.*
-  apiInfoTitle: @project.artifactId@
-  apiInfoDescription: @project.name@ Documentation
-  apiInfoContactEmail: @swagger.project.contact@
-  apiInfoContactName: toto@gmail.com
-  apiInfoContactURL: toto.fr
-  apiInfoVersion: @pom.version@
+  apiInfoTitle: '@project.artifactId@'
+  apiInfoDescription: '@project.name@ Documentation'
+  apiInfoContactEmail: 'hbouhdadi@ht.com'
+  apiInfoContactName: houssine
+  apiInfoContactURL: http://easyms.fr
+  apiInfoVersion: '@pom.version@'
   apiInfoLicense: license
-  apiInfoLicenseUrl: http://easyms.fr/LICENSE-0.0.1.html
+  apiInfoLicenseUrl: http://easyms.fr/LICENSE-0.0.1.html© 2020 GitHub, Inc.
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:clientdb
+    driverClassName: org.h2.Driver
+    username: test
+    password: test
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+  h2:
+    console:
+      enabled: true
