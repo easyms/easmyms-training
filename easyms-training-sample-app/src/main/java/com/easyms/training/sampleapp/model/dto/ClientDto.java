@@ -5,13 +5,20 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@AllArgsConstructor
+import javax.validation.constraints.NotNull;
+
+
 @Data
 @Builder
 @NoArgsConstructor
+@AllArgsConstructor
 public class ClientDto {
 
     private Long id;
+
+    @NotNull
     private String firstname;
+    private String lastname;
+    private String email;
 
 }
