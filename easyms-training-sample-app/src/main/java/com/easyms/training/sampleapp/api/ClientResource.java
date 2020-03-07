@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -32,24 +33,21 @@ public class ClientResource {
     @ApiOperation("returns all clients")
     @GetMapping(path = "/v1/clients")
     public ResponseEntity<List<ClientDto>> getAllClients() {
+
+        System.out.println("******************************************");
         return ResponseEntity.ok().body(clientService.getAll());
     }
 
     @ApiOperation("returns a client by searching his id ")
     @GetMapping(path = "/v1/clients/{id}", produces = APPLICATION_JSON_VALUE)
-    public ResponseEntity<ClientDto> getClientById(@PathVariable Long id) {
+    public ResponseEntity<ClientDto> getClientById(@PathVariable @Valid Long id) {
         Optional<ClientDto> clt = clientService.getById(id);
-        if (!clt.isPresent()) {
-            log.error("Id " + id + " does not exist");
-            ResponseEntity.badRequest().build();
-        }
-        return ResponseEntity.ok(clt.get());
-
+        return clt.map(clientDto -> ResponseEntity.ok().body(clientDto)).orElseGet(()-> ResponseEntity.notFound().build());
     }
 
     @ApiOperation("creates a new client")
     @PostMapping(path = "/v1/clients", produces = APPLICATION_JSON_VALUE)
-    ResponseEntity<ClientDto> createClient(@RequestBody @Valid ClientDto clientDto) {
+    ResponseEntity<ClientDto> createClient(@RequestBody  ClientDto clientDto) {
         clientService.save(clientDto);
         final URI location = ServletUriComponentsBuilder.fromCurrentServletMapping().path("/api/v1/clients/{id}").build().expand(clientDto.getId()).toUri();
         return ResponseEntity.created(location).body(clientDto);
@@ -58,6 +56,9 @@ public class ClientResource {
     @ApiOperation("updates existing client")
     @PutMapping(path = {"/v1/clients/{id}"}, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<ClientDto> update(@PathVariable("id") Long id, @RequestBody ClientDto clientDto) {
+        System.out.println("=========================***********************=========================");
+
+       System.out.println("update client spting "+ id+ " " + clientDto.toString());
         if (!clientService.getById(id).isPresent()) {
             log.error("Id " + id + " does not exist");
             ResponseEntity.badRequest().build();
