@@ -33,8 +33,6 @@ public class ClientResource {
     @ApiOperation("returns all clients")
     @GetMapping(path = "/v1/clients")
     public ResponseEntity<List<ClientDto>> getAllClients() {
-
-        System.out.println("******************************************");
         return ResponseEntity.ok().body(clientService.getAll());
     }
 
@@ -56,9 +54,7 @@ public class ClientResource {
     @ApiOperation("updates existing client")
     @PutMapping(path = {"/v1/clients/{id}"}, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<ClientDto> update(@PathVariable("id") Long id, @RequestBody ClientDto clientDto) {
-        System.out.println("=========================***********************=========================");
 
-       System.out.println("update client spting "+ id+ " " + clientDto.toString());
         if (!clientService.getById(id).isPresent()) {
             log.error("Id " + id + " does not exist");
             ResponseEntity.badRequest().build();
