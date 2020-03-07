@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.easyms.training.common.EasyMsTrainingAutoConfiguration
+  com.easyms.training.rest.autoconfigure.EasyMsTrainingAutoConfiguration

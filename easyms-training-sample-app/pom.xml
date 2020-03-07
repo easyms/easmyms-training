@@ -15,7 +15,6 @@
         <dependency>
             <groupId>com.easyms</groupId>
             <artifactId>easyms-training-rest-starter</artifactId>
-            <version>${easyms.sdk.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

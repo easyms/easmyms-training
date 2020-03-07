@@ -46,9 +46,9 @@ public class ClientResource {
     @ApiOperation("creates a new client")
     @PostMapping(path = "/v1/clients", produces = APPLICATION_JSON_VALUE)
     ResponseEntity<ClientDto> createClient(@RequestBody  ClientDto clientDto) {
-        clientService.save(clientDto);
-        final URI location = ServletUriComponentsBuilder.fromCurrentServletMapping().path("/api/v1/clients/{id}").build().expand(clientDto.getId()).toUri();
-        return ResponseEntity.created(location).body(clientDto);
+        ClientDto createdClient = clientService.save(clientDto);
+        final URI location = ServletUriComponentsBuilder.fromCurrentServletMapping().path("/api/v1/clients/{id}").build().expand(createdClient.getId()).toUri();
+        return ResponseEntity.created(location).body(createdClient);
     }
 
     @ApiOperation("updates existing client")

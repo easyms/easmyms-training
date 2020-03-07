@@ -5,9 +5,7 @@ import com.easyms.training.sampleapp.model.entity.Client;
 import com.easyms.training.sampleapp.repository.ClientRepository;
 import com.easyms.training.sampleapp.util.ObjectMapperUtils;
 import lombok.AllArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-import org.springframework.beans.BeanUtils;
 
 
 import java.util.List;
@@ -32,9 +30,8 @@ public class ClientService {
         return ObjectMapperUtils.mapAll(clientList, ClientDto.class);
 
     }
-    public Client save(ClientDto dto) {
-
-        return clientRepository.save(ObjectMapperUtils.map(dto,Client.class));
+    public ClientDto save(ClientDto dto) {
+        return ObjectMapperUtils.map(clientRepository.save(ObjectMapperUtils.map(dto,Client.class)), ClientDto.class);
     }
 
     public void delete(Long id) {

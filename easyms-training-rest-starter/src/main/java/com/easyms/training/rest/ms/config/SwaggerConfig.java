@@ -1,4 +1,4 @@
-package com.easyms.training.common.config;
+package com.easyms.training.rest.ms.config;
 
 
 import com.google.common.base.Predicates;
