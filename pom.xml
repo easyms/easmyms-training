@@ -15,13 +15,46 @@
     <artifactId>easyms-training-sdk</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-
     <name>easyms-training-sdk</name>
+    <description>Training sample</description>
+
+    <properties>
+        <java.version>11</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <maven.version>3.6.3</maven.version>
+        <swagger.version>2.9.2</swagger.version>
+        <app.id>12</app.id>
+        <swagger.project.contact>swagger.project.contact</swagger.project.contact>
+    </properties>
+
 
     <prerequisites>
         <maven>${maven.version}</maven>
     </prerequisites>
     <modules>
-
+        <module>easyms-training-sample-app</module>
     </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-common</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+
 </project>
