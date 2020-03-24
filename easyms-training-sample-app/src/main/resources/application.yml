@@ -1,5 +1,5 @@
 server:
-  port: 8093
+  port: 8090
   
 swagger:
   paths: /api.*
@@ -25,16 +25,17 @@ spring:
       hibernate:
         show_sql: true
         format_sql: true
+  # enable H2 web console and set url for web console
+  # http://localhost:8090/console
+  h2:
+    console:
+      enabled: true
+      path: /console
 
 logging:
   level:
     org:
       hibernate:
         type: trace
-  # enable H2 web console and set url for web console
-  # http://localhost:8080/console
-  h2:
-    console:
-      enabled: true
-      path: /console
+
 
